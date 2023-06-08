@@ -17,7 +17,7 @@ func main() {
 		{0, 3},
 	}
 
-	c, _ := a.Add(b)
+	c := a.Add(b)
 
 	fmt.Println("A: ")
 	fmt.Println(a)

@@ -1,9 +1,9 @@
 package main
 
-func (a *Matrix) Add(b *Matrix) (*Matrix, error) {
+func (a *Matrix) Add(b *Matrix) *Matrix {
 	m, n := a.Size()
 	if mb, nb := b.Size(); !(m == mb && n == nb) {
-		return nil, fmt.Errorf("bad size")
+		panic("add: bad size")
 	}
 
 	c := a.Copy()
@@ -14,7 +14,22 @@ func (a *Matrix) Add(b *Matrix) (*Matrix, error) {
 		}
 	}
 
-	return c, nil
+	return c
+}
+
+func (a *Matrix) Scale(k float64) *Matrix {
+	m, n := a.Size()
+	c := a.Copy()
+	for i := 0; i < m; i++ {
+		for j := 0; j < n; j++ {
+			(*c)[i][j] *= k
+		}
+	}
+	return c
+}
+
+func (a *Matrix) Sub(b *Matrix) *Matrix {
+	return a.Add(b.Scale(-1.0))
 }
 
 func (a *Matrix) T() *Matrix {
@@ -32,8 +47,7 @@ func (a *Matrix) Mul(b *Matrix) *Matrix {
 	ma, na := a.Size()
 	mb, nb := b.Size()
 	if na != mb {
-		// todo: return error
-		return nil
+		panic("multiply: bad size")
 	}
 	c := NewMatrix(ma, nb)
 	for i, row := range a.Rows() {
