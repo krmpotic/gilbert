@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - find inverse
 - projection matrix
 - matrix type determination (upper triangular/symmetric...)
+- use generics and add complex/bigRat types
 
 ## [0.0.0] - 2023-06-08
 
