@@ -37,11 +37,12 @@ func (a *Matrix) String() string {
 }
 
 func (a *Matrix) Size() (int, int) {
-	if a == nil || (*a) == nil || (*a)[0] == nil {
+	if len(*a) == 0 || len((*a)[0]) == 0 {
 		return 0, 0
 	}
 	return len(*a), len((*a)[0])
 }
+
 func (a *Matrix) Copy() *Matrix {
 	m, n := a.Size()
 	c := NewMatrix(m, n)
