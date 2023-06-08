@@ -2,10 +2,8 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
-type Vector []float64
 type Matrix [][]float64
 
 func NewMatrix(m, n int) *Matrix {
@@ -124,19 +122,6 @@ func (a *Matrix) Mul(b *Matrix) *Matrix {
 		}
 	}
 	return c
-}
-
-func (v *Vector) Dot(w *Vector) float64 {
-	// todo: check dimension
-	s := 0.0
-	for i := 0; i < len(*v); i++ {
-		s += (*v)[i] * (*w)[i]
-	}
-	return s
-}
-
-func (v *Vector) Norm() float64 {
-	return math.Sqrt(v.Dot(v))
 }
 
 func main() {
