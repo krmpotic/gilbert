@@ -43,6 +43,24 @@ func (a *Matrix) Size() (int, int) {
 	return len(*a), len((*a)[0])
 }
 
+func (a *Matrix) Equal(b *Matrix) bool {
+	m, n := a.Size()
+	mb, nb := b.Size()
+	if m != mb || n != nb {
+		return false
+	}
+
+	for i := 0; i < m; i++ {
+		for j := 0; j < n; j++ {
+			if (*a)[i][j] != (*b)[i][j] {
+				return false
+			}
+		}
+	}
+
+	return true
+}
+
 func (a *Matrix) Copy() *Matrix {
 	m, n := a.Size()
 	c := NewMatrix(m, n)
